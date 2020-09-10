@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Jumbo from './components/Jumbo';
 import Card from './components/Card';
 import Carousel from './components/Carousel';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     <Navbar />
     <Jumbo />
     <Card />
+    <Footer />
     </>
   );
 }
