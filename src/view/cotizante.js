@@ -16,5 +16,7 @@ const Cotizante = () => {
         </div>
 
     </>)
+
+
 }
 export default Cotizante;
