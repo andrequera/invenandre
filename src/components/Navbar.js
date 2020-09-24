@@ -23,6 +23,9 @@ const Navbar = () => {
                         <Link className="nav-link" to="/rutacotizante">Cotizador</Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="nav-link" to="/controlinventario">Control Inventario</Link>
+                    </li>
+                    <li className="nav-item">
                         <a className="nav-link" href="#">Contactanos</a>
                     </li>
                 </ul>
