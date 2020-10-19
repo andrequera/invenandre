@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'firebase/auth';
 import { useFirebaseApp, useUser } from 'reactfire';
-import Inventario from './Inventario';
+import Inventario from './controlInventario';
 
 export default (props) => {
     const [email, setEmail] = useState('');
