@@ -9,20 +9,23 @@ import Cotizante from "./view/cotizante";
 import Footer from './components/Footer';
 import injectContext from "./store/appContext"
 import Control from './view/Control';
+import Logincontrol from './view/Logincontrol';
+import { useFirebaseApp } from 'reactfire';
 
 
 
 
 function App() {
+  const firebase = useFirebaseApp();
+  console.log(firebase);
   return (
     <>
       <BrowserRouter>
         <Navbar />
-        
         <Switch>
         <Route exact path="/" component={Home} />
           <Route exact path="/rutacotizante" component={Cotizante} />
-          <Route exact path="/controlinventario" component={Control} />
+          <Route exact path="/controlinventario" component={Logincontrol} />
         </Switch>
         <Footer />
       </BrowserRouter>
