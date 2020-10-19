@@ -31,7 +31,7 @@ export default (props) => {
                     <input type="email" onChange={(ev) => setEmail(ev.target.value)}></input>
                     <label htmlFor="password">Password</label>
                     <input type="password" id="password" onChange={(ev) => setPassword(ev.target.value)}></input>
-                    <button onClick={submit}>Crear Cuenta</button>
+                    
                     <button onClick={login}>Iniciar sesión</button>
                 </div>
             }
