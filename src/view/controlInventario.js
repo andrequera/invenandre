@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import TablaPeq from '../components/tablaPeq'
 import { Context } from "../store/appContext"
 
 
@@ -29,40 +30,59 @@ const Inventario = () => {
                                     <h1>Pedidos</h1>
 
 
+
+
+
                                     <table class="table table-bordered">
                                         <thead>
+
+
+
+
+
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">SKU</th>
-                                                <th scope="col">Producto</th>
-                                                <th scope="col">Cliente</th>
-                                                <th scope="col">Paletas</th>
-                                                <th scope="col">Cantidades</th>
                                                 <th scope="col">Fecha</th>
+                                                <th scope="col">Pedido</th>
                                                 <th scope="col">Respuesta</th>
-
-
                                             </tr>
+
                                         </thead>
                                         <tbody>
+
                                             {
                                                 store.pedidos.map((pedido, i) => {
                                                     return (
-                                                        pedido.datos.map((dato, j) => {
-                                                            return (
-                                                                <tr key={j}>
-                                                                    <th scope="row">{i + 1}</th>
-                                                                    <td>{dato.sku}</td>
-                                                                    <td>{dato.name}</td>
-                                                                    <td>{pedido.nombre}</td>
-                                                                    <td>{dato.paleta}</td>
-                                                                    <td>{dato.cantidaddebotellas}</td>
-                                                                    <td>9/10/2020</td>
-                                                                    <td><i class="far fa-check-circle fa-2x"></i><i class="far fa-times-circle fa-2x"></i></td>
-                                                                </tr>
-                                                            )
-                                                        })
+                                                        <>
+                                                            <h5  key={i}>{pedido.nombre}</h5>
+                                                            <tr>
+                                                                <th scope="row">{i + 1}</th>
+                                                                <td>9/10/2020</td>
+                                                                <td>
+                                                                    <table class="table table-sm">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th scope="col">SKU</th>
+                                                                                <th scope="col">Producto</th>
+                                                                                <th scope="col">Paleta</th>
+                                                                                <th scope="col">Cantidad</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <TablaPeq pedido={pedido}/>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+
+                                                                <td>
+                                                                    <i class="far fa-check-circle fa-2x"></i>
+                                                                    <i class="far fa-times-circle fa-2x"></i>
+                                                                </td>
+
+                                                            </tr>
+                                                        </>
                                                     )
+
                                                 })
                                             }
                                         </tbody>
@@ -80,37 +100,92 @@ const Inventario = () => {
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">SKU</th>
-                                                <th scope="col">Tapas</th>
-                                                <th scope="col">Botellas de PET 330ml</th>
-                                                <th scope="col">Botellas de PET 660ml</th>
-                                                <th scope="col">Botellas de PET 1,5L</th>
-                                                <th scope="col">Agua mineral</th>
-                                                <th scope="col">Etiqueta 330ml</th>
-                                                <th scope="col">Etiqueta 660ml</th>
-                                                <th scope="col">Envoltura 1</th>
-                                                <th scope="col">Envoltura 2</th>
-                                                <th scope="col">Paletas</th>
+                                                <th scope="col">Producto</th>
+                                                <th scope="col">Cantidad</th>
                                                 <th scope="col">Precio</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th scope="row">1</th>
-                                                <td>BAMP-3</td>
-                                                <td>Botella 330ml</td>
-                                                <td>Fatima</td>
-                                                <td>5</td>
-                                                <td>768765</td>
-                                                <td>9/10/2020</td>
+                                                <td>abc</td>
+                                                <td>Tapas</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>abc</td>
+                                                <td>Botellas de PET 330ml</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">3</th>
-                                                <td colspan="2">Larry the Bird</td>
-                                                <td>@twitter</td>
+                                                <td>abc</td>
+                                                <td>Botellas de PET 660ml</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">4</th>
+                                                <td>abc</td>
+                                                <td>Botellas de PET 1,5L</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">5</th>
+                                                <td>abc</td>
+                                                <td>Agua mineral</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">6</th>
+                                                <td>abc</td>
+                                                <td>Etiqueta 330ml</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">7</th>
+                                                <td>abc</td>
+                                                <td>Etiqueta 660ml</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">8</th>
+                                                <td>abc</td>
+                                                <td>Etiqueta 1,5L</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">9</th>
+                                                <td>abc</td>
+                                                <td>Envoltura 1</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">10</th>
+                                                <td>abc</td>
+                                                <td>Envoltura 2</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">11</th>
+                                                <td>abc</td>
+                                                <td>Paletas</td>
+                                                <td>abc</td>
+                                                <td>abc</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <i class="fas fa-pencil-alt fa-2x"></i>
+                                    <i class="fas fa-pencil-alt fa-2x float-right"></i>
                                 </div>
                             </div>
                         </div>
@@ -118,44 +193,126 @@ const Inventario = () => {
                             <div className="col-12"><h1>Inventario</h1>
                                 <table class="table table-bordered">
                                     <thead>
+
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">SKU</th>
-                                            <th scope="col">Tapas</th>
-                                            <th scope="col">Botellas de PET 330ml</th>
-                                            <th scope="col">Botellas de PET 660ml</th>
-                                            <th scope="col">Botellas de PET 1,5L</th>
-                                            <th scope="col">Agua mineral</th>
-                                            <th scope="col">Etiqueta 330ml</th>
-                                            <th scope="col">Etiqueta 660ml</th>
-                                            <th scope="col">Etiqueta 1,5L</th>
-                                            <th scope="col">Envoltura 1</th>
-                                            <th scope="col">Envoltura 2</th>
-                                            <th scope="col">Paletas</th>
-                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Cantidad</th>
                                             <th scope="col">Precio</th>
+
+
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Editar</th>
+                                            <th scope="col">Borrar</th>
+
                                             <th scope="col"><i class="fas fa-plus fa-2x"></i></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td>BAMP-3</td>
-                                            <td>Botella 330ml</td>
-                                            <td>Fatima</td>
-                                            <td>5</td>
-                                            <td>768765</td>
-                                            <td>9/10/2020</td>
-                                            <td>@twitter</td>
-                                            <td>BAMP-3</td>
-                                            <td>Botella 330ml</td>
-                                            <td>Botella 330ml</td>
-                                            <td>Fatima</td>
-                                            <td>5</td>
-                                            <td>768765</td>
-                                            <td>9/10/2020</td>
-                                            <td><i class="fas fa-pencil-alt fa-2x"></i><i class="fas fa-trash fa-2x"></i></td>
+                                            <td>abc</td>
+                                            <td>Tapas</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td>
                                         </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>abc</td>
+                                            <td>Botellas de PET 330ml</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td> </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>abc</td>
+                                            <td>Botellas de PET 660ml</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td>  </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>abc</td>
+                                            <td>Botellas de PET 1,5L</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td>  </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>abc</td>
+                                            <td>Agua mineral</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td> </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>abc</td>
+                                            <td>Etiqueta 330ml</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td> </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>abc</td>
+                                            <td>Etiqueta 660ml</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td>  </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>abc</td>
+                                            <td>Etiqueta 1,5L</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td>  </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>abc</td>
+                                            <td>Envoltura 1</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td>  </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>abc</td>
+                                            <td>Envoltura 2</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td>  </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>abc</td>
+                                            <td>Paletas</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td><i class="fas fa-pencil-alt fa-2x"></i></td>
+                                            <td><i class="fas fa-trash fa-2x"></i></td>  </tr>
+                                        {/* <td><i class="fas fa-pencil-alt fa-2x"></i><i class="fas fa-trash fa-2x"></i></td> */}
+
                                     </tbody>
                                 </table>
                             </div>
@@ -164,7 +321,7 @@ const Inventario = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 export default Inventario;

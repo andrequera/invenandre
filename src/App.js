@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery'; import 'popper.js'; import 'bootstrap';
+import './app.css'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Navbar from './components/Navbar';
 import Home from './view/home';

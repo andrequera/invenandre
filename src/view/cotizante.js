@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import { Context } from "../store/appContext"
 import '@fortawesome/fontawesome-free/css/all.css';
 import swal from 'sweetalert';
+import Carousel from '../components/Carousel';
+
 
 const Cotizante = () => {
     const { store, actions } = useContext(Context)
@@ -15,23 +17,26 @@ const Cotizante = () => {
     //console.log(store.producto)
 
     const limpiaGeneral = (e) => {
-         actions.alertaLimpiar(e)
+        actions.alertaLimpiar(e)
     }
 
-   
+
     return (<>
         <div className="container">
+            <div className="row">
+                <Carousel />
+            </div>
             <div className="row pt-4">
                 <div className="col-md-6 offset-3">
                     <div className="row">
                         <div className="col-md-6">
                             <h1>Cotizante</h1>
                         </div>
-                        <div className="col-md-6">
-                            <h3>{f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear()}</h3>
-                        </div>
+                        {/* <img src={"../img/calendario1"+".jpg"}</img> */}
                     </div>
-                    <h1></h1>
+                    <div className="float-right"> 
+                        <h6>{f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear()}</h6>
+                    </div>
                 </div>
                 <form onSubmit={e => actions.enviarFormulario(e)}>
                     <div className="form-row">
@@ -138,7 +143,7 @@ const Cotizante = () => {
                                     </tr>
                                 </tbody>
                             </table>
-                          
+
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
