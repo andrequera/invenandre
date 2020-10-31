@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Context } from "../store/appContext"
 
 const Control = () => {
+
     return (
         <>
             <div className="container">

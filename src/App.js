@@ -14,8 +14,6 @@ import Inventario from './view/controlInventario';
 import Login from './view/login';
 import { useFirebaseApp } from 'reactfire';
 
-
-
 function App() {
   return (
     <>
@@ -28,6 +26,7 @@ function App() {
           {/* <Route exact path="/controlinventario" component={Inventario} /> */}
           <Route exact path="/login" component={Login} />
           {/* <Route exact path="/contacto" component={Contacto} /> */}
+
         </Switch>
         <Footer />
       </BrowserRouter>
