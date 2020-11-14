@@ -1,9 +1,29 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import TablaPeq from '../components/tablaPeq'
 import { Context } from "../store/appContext"
+import Grafico from "../components/grafico"
+import Graficoe from '../components/grafico1'
 
 const Inventario = () => {
     const { store, actions } = useContext(Context)
+
+    const [busqueda, setBusqueda] = useState("");
+    const [resultadoBusqueda, setResultadoBusqueda] = useState([]);
+    const handleChange = e => {
+        setBusqueda(e.target.value);
+    };
+
+
+
+
+
+
+useEffect(() => {
+        if (store.inventario !== null) {
+            const results = store.inventario.filter(item => item.skuinventario.toString().toLowerCase().includes(busqueda));
+            setResultadoBusqueda(results);
+        }
+    }, [store.inventario, busqueda]);
     const [state, setState] = useState(false)
 
     const sumarInventario = () => {
@@ -41,7 +61,6 @@ const Inventario = () => {
                     </div>
                     <div className="tab-content" id="nav-tabContent">
                         <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
                             <div className="row pt-4">
                                 <div className="col-12">
                                     <div className="carousel mycarousel">
@@ -93,8 +112,8 @@ const Inventario = () => {
                                                                 </td>
 
                                                                 <td>
-                                                                    <img src={"../img/siprocesada" + ".jpg"} width="35" height="35" className="mx-auto d-block" onClick={()=>actions.aceptarCotizacion(i)}></img>
-                                                                    <img src={"../img/noprocesada" + ".jpg"} width="35" height="35" className="mx-auto d-block" onClick={()=>actions.rechazarCotizacion(i)}></img>
+                                                                    <img src={"../img/siprocesada" + ".jpg"} width="35" height="35" className="mx-auto d-block" onClick={() => actions.aceptarCotizacion(i)}></img>
+                                                                    <img src={"../img/noprocesada" + ".jpg"} width="35" height="35" className="mx-auto d-block" onClick={() => actions.rechazarCotizacion(i)}></img>
 
                                                                 </td>
 
@@ -106,7 +125,6 @@ const Inventario = () => {
                                             }
                                         </tbody>
                                     </table>
-
                                     <div>
                                         <img className="d-block w-100" src={"../img/pedidos1" + ".png"} className="rounded mx-auto d-block img-fluid" alt="...imagen..."></img>
                                     </div>
@@ -114,74 +132,82 @@ const Inventario = () => {
                             </div>
                         </div>
                         <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
                             <div className="row pt-4">
                                 <div className="col-12">
-
                                     <div className="carousel mycarousel">
                                         <img src={"../img/materiaprima" + ".png"} className="img-fluid w-100" alt="imagen"></img>
                                         <div className="carousel-caption d-none d-md-block">
                                             <h1><strong>Materia Prima</strong></h1>
                                         </div>
                                     </div>
-
-                                    {/* <h1>Materia Prima</h1> */}
-
-
-
-
-
-
-
-                                    <table className="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"><img src={"../img/mp" + ".png"} width="40" height="40" className="mx-auto d-block" alt="...imagen..."></img>
-                                                </th>
-                                                <th scope="col">SKU</th>
-                                                <th scope="col">Producto</th>
-                                                <th scope="col">Cajas</th>
-                                                <th scope="col">Cantidades</th>
-                                                <th scope="col">Precio</th>
-                                            </tr>
-                                        </thead>
-
-
-
-                                        <tbody>
-                                            {
-                                                store.inventario !== null &&
-                                                store.inventario.map((prod, i) => {
-                                                    return (
-                                                        <tr key={i}>
-                                                            <th scope="row" className="text-center">{i + 1}</th>
-                                                            <td>{prod.skuinventario} </td>
-                                                            <td>{prod.productoinventario}</td>
-                                                            <td>{prod.paletainventario}</td>
-                                                            <td>{prod.cantidadinventario}</td>
-                                                            <td>{prod.precioinventario}</td>
-
-
-                                                        </tr>
-                                                    )
-                                                })
-
-
-                                            }
-
-
-                                        </tbody>
-
-                                    </table>
-                                    {/* L... <a className="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"  aria-controls="nav-contact" aria-selected="false"><i className="fas fa-pencil-alt fa-2x float-right"></i></a> */}
-
-                                    <div>
-                                        <img className="d-block w-100" src={"../img/proceso1" + ".jpg"} className="rounded mx-auto d-block img-fluid" alt="...imagen..."></img>
-                                    </div>
-
-
-
                                 </div>
+                            </div>
+
+                            {/* <h1>Materia Prima</h1> */}
+                            <div className="row justify-content-end pt-4">
+                                <div className="col-md-5">
+                                    <div className="input-group mb-3">
+                                        <input type="text" className="form-control" value={busqueda} placeholder="Busqueda por SKU" onChange={handleChange} />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="col-md-12">
+                                <table className="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><img src={"../img/mp" + ".png"} width="40" height="40" className="mx-auto d-block" alt="...imagen..."></img>
+                                            </th>
+                                            <th scope="col">SKU</th>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Cajas</th>
+                                            <th scope="col">Cantidades</th>
+                                            <th scope="col">Precio</th>
+                                        </tr>
+                                    </thead>
+
+
+
+                                    <tbody>
+                                        {
+                                            store.inventario !== null &&
+                                            resultadoBusqueda.map((prod, i) => {
+                                                return (
+                                                    <tr key={i}>
+                                                        <th scope="row" className="text-center">{i + 1}</th>
+                                                        <td>{prod.skuinventario} </td>
+                                                        <td>{prod.productoinventario}</td>
+                                                        <td>{prod.paletainventario}</td>
+                                                        <td>{prod.cantidadinventario}</td>
+                                                        <td>{prod.precioinventario}</td>
+
+
+                                                    </tr>
+                                                )
+                                            })
+
+
+                                        }
+
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            {/* L... <a className="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"  aria-controls="nav-contact" aria-selected="false"><i className="fas fa-pencil-alt fa-2x float-right"></i></a> */}
+
+                            <div className="row py-5">
+                                <div className="col-md-6">
+                                    <Grafico />
+                                </div>
+                                <div className="col-md-6">
+                                    <Graficoe />
+                                </div>
+                            </div>
+                            <div>
+                                <img className="d-block w-100" src={"../img/proceso1" + ".jpg"} className="rounded mx-auto d-block img-fluid" alt="...imagen..."></img>
                             </div>
                         </div>
                         <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> <div className="row pt-4">
@@ -285,10 +311,10 @@ const Inventario = () => {
                                                 </td>
 
                                                 <td> <form>
-                                                        <div className="form-group">
-                                                            <input className="form-control" value={store.fechainventario} name="fechainventario" type="text" placeholder="Fecha" onChange={(e) => actions.capturaCampos(e)} />
-                                                        </div>
-                                                    </form></td>
+                                                    <div className="form-group">
+                                                        <input className="form-control" value={store.fechainventario} name="fechainventario" type="text" placeholder="Fecha" onChange={(e) => actions.capturaCampos(e)} />
+                                                    </div>
+                                                </form></td>
 
                                                 <td> <img src={"../img/siprocesada" + ".jpg"} width="35" height="35" alt="...imagen..." onClick={(e) => actions.agregarProdInventario(e)}></img>
                                                 </td>
@@ -325,11 +351,7 @@ const Inventario = () => {
                                                                         <form>
                                                                             <div className="form-row">
                                                                                 <div className="col">
-
                                                                                     <th scope="col">SKU</th>
-
-
-
 
 
                                                                                     <input type="text" name="skuinventarioedi" className="form-control" value={store.skuinventarioedi} placeholder={store.inventario[posicion].skuinventario} onChange={(e) => actions.capturaCampos(e)}></input>
@@ -363,11 +385,11 @@ const Inventario = () => {
                                                                                 <div className="col">
                                                                                     <th scope="col">Precio</th>
 
-                                                                                    <input type="text" name="precioinventarioedi" className="form-control" placeholder={store.inventario[posicion].precioinventario} value={store.precioinventarioedi} type="text" placeholder="Precio" onChange={(e) => actions.capturaCampos(e)}></input>
+                                                                                    <input type="text" name="precioinventarioedi" className="form-control" placeholder={store.inventario[posicion].precioinventario} value={store.precioinventarioedi} type="text" onChange={(e) => actions.capturaCampos(e)}></input>
                                                                                 </div>
                                                                                 <div className="col">
                                                                                     <th scope="col">Fecha</th>
-                                                                                    <input type="text" name="fechainventarioedi" className="form-control" placeholder={store.inventario[posicion].fechainventario} onChange={(e) => actions.capturaCampos(e)}></input>
+                                                                                    <input type="text" name="fechainventarioedi" className="form-control" placeholder={store.inventario[posicion].fechainventario} value={store.fechainventarioedi} onChange={(e) => actions.capturaCampos(e)}></input>
                                                                                 </div>
                                                                             </div>
                                                                         </form>
