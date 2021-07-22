@@ -32,13 +32,9 @@ const Cotizante = () => {
             <div className="row">
                 <div>
                     <img className="d-block w-100" src={"../img/cotizador1" + ".png"} width="500" height="600" alt="...imagen..."></img>
-                </div>
-
-
-            
-
-
+                </div>        
             </div>
+            
             <div className="row pt-4">
                 <div className="col-md-12">
                     {/* <div className="row">

@@ -95,6 +95,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
                 else {
                     const store = getStore();
+                
+                    fetch("https://3000-turquoise-deer-jclgrdxj.ws-us10.gitpod.io/pedido")
+                    .then(respuesta=>respuesta.json()) 
+                    .then(data=>console.table(data))
+                    .catch(error=>console.log(error))
+
                     setStore({
                         ...store, pedidos: [...store.pedidos, {
                             nombre: store.nombre,
@@ -105,6 +111,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                             datos: store.datos
                         }], datos: []
                     })
+                
+                
 
                     swal("Perfecto!", "Cotización en proceso!", "success");
                     const DOMAIN = process.env.REACT_APP_MAILGUN_API_DOMAIN;
@@ -243,6 +251,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                 //     }
                 // }
                 // else if (bandera === 0) {
+
+                    // fetch("https://3000-plum-iguana-mtfnsanu.ws-us10.gitpod.io/cotizacion")
+                    // .then(respuesta=>respuesta.json()) 
+                    // .then(data=>console.table(data))
+                    // .catch(error=>console.log(error))
+
+
                 setStore([...store.datos], store.datos.push({
                     name: store.nameSelec,
                     descripcion: store.descripcionSelec,
@@ -378,6 +393,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                 datajs !== null ? setStore({ ...store, inventario: datajs }) : setStore({ ...store, inventario: [] })
                 // console.log(typeof datainvetario, typeof  dataparse)
+                fetch("https://3000-turquoise-deer-jclgrdxj.ws-us10.gitpod.io/inventario")
+                .then(respuesta=>respuesta.json()) 
+                .then(data=>setStore({inventario:data}))
+                .catch(error=>console.log(error))
+
             },
 
 

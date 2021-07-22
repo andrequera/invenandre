@@ -24,6 +24,7 @@ useEffect(() => {
             setResultadoBusqueda(results);
         }
     }, [store.inventario, busqueda]);
+    
     const [state, setState] = useState(false)
 
     const sumarInventario = () => {

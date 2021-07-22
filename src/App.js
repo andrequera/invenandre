@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import injectContext from "./store/appContext"
 import Control from './view/Control';
 import Inventario from './view/controlInventario';
+import Productos from './view/productos';
 import Login from './view/login';
 import { useFirebaseApp } from 'reactfire';
 
@@ -26,6 +27,7 @@ function App() {
           {/* <Route exact path="/controlinventario" component={Inventario} /> */}
           <Route exact path="/login" component={Login} />
           {/* <Route exact path="/contacto" component={Contacto} /> */}
+          <Route exact path="/productos" component={Productos} />
 
         </Switch>
         <Footer />

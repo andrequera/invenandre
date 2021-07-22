@@ -10,7 +10,7 @@ const Card = () => {
                     <div className="card-body">
                         <h5 className="card-title">Botellas PET</h5>
                         <p className="card-text">Disponible en tres presentaciones.</p>
-                        <a href="#" className="btn btn-primary">Productos</a>
+                        <a href="/productos" className="btn btn-primary">Productos</a>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@ const Card = () => {
                     <div className="card-body">
                         <h5 className="card-title">Cotizar</h5>
                         <p className="card-text">Cotización de pedidos.</p>
-                        <a href="#" className="btn btn-primary">Cotizador</a>
+                        <a href="/rutacotizante" className="btn btn-primary">Cotizador</a>
                     </div>
                 </div>
             </div>
