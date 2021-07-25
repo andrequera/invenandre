@@ -95,11 +95,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
                 else {
                     const store = getStore();
-                
+
                     fetch("https://3000-turquoise-deer-jclgrdxj.ws-us10.gitpod.io/pedido")
-                    .then(respuesta=>respuesta.json()) 
-                    .then(data=>console.table(data))
-                    .catch(error=>console.log(error))
+                        .then(respuesta => respuesta.json())
+                        .then(data => console.table(data))
+                        .catch(error => console.log(error))
 
                     setStore({
                         ...store, pedidos: [...store.pedidos, {
@@ -111,8 +111,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                             datos: store.datos
                         }], datos: []
                     })
-                
-                
+
+
 
                     swal("Perfecto!", "Cotización en proceso!", "success");
                     const DOMAIN = process.env.REACT_APP_MAILGUN_API_DOMAIN;
@@ -175,16 +175,16 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const store = getStore()
                 swal("Perfecto!", "Cotización aceptada!", "success");
                 const DOMAIN = process.env.REACT_APP_MAILGUN_API_DOMAIN;
-                    const mg = mailgun({ apiKey: process.env.REACT_APP_MAILGUN_API_KEY, domain: DOMAIN });
-                    const data = {
-                        from: 'andrequera@gmail.com',
-                        to: store.pedidos[i].email,
-                        subject: 'Informacion sobre su cotizacion',
-                        text: "Su cotizacion ha sido procesada con exito"
-                    };
-                    mg.messages().send(data, function (error, body) {
-                        console.log(body);
-                    });
+                const mg = mailgun({ apiKey: process.env.REACT_APP_MAILGUN_API_KEY, domain: DOMAIN });
+                const data = {
+                    from: 'andrequera@gmail.com',
+                    to: store.pedidos[i].email,
+                    subject: 'Informacion sobre su cotizacion',
+                    text: "Su cotizacion ha sido procesada con exito"
+                };
+                mg.messages().send(data, function (error, body) {
+                    console.log(body);
+                });
 
                 store.pedidos[i].datos.map(item2 => {
                     console.log(item2)
@@ -211,17 +211,17 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const store = getStore()
                 swal("Lo sentimos,", "cotizacion no procesada!", "error");
                 const DOMAIN = process.env.REACT_APP_MAILGUN_API_DOMAIN;
-                    const mg = mailgun({ apiKey: process.env.REACT_APP_MAILGUN_API_KEY, domain: DOMAIN });
-                    const data = {
-                        from: 'andrequera@gmail.com',
-                        to: store.pedidos[i].email,
-                        subject: 'Informacion sobre su cotizacion',
-                        text: "Su cotizacion ha sido cancelada, lo sentimos"
-                    };
-                    mg.messages().send(data, function (error, body) {
-                        console.log(body);
-                    });
-                    setStore(store.pedidos=[])
+                const mg = mailgun({ apiKey: process.env.REACT_APP_MAILGUN_API_KEY, domain: DOMAIN });
+                const data = {
+                    from: 'andrequera@gmail.com',
+                    to: store.pedidos[i].email,
+                    subject: 'Informacion sobre su cotizacion',
+                    text: "Su cotizacion ha sido cancelada, lo sentimos"
+                };
+                mg.messages().send(data, function (error, body) {
+                    console.log(body);
+                });
+                setStore(store.pedidos = [])
                 console.log(i)
             },
 
@@ -252,10 +252,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                 // }
                 // else if (bandera === 0) {
 
-                    // fetch("https://3000-plum-iguana-mtfnsanu.ws-us10.gitpod.io/cotizacion")
-                    // .then(respuesta=>respuesta.json()) 
-                    // .then(data=>console.table(data))
-                    // .catch(error=>console.log(error))
+                // fetch("https://3000-plum-iguana-mtfnsanu.ws-us10.gitpod.io/cotizacion")
+                // .then(respuesta=>respuesta.json()) 
+                // .then(data=>console.table(data))
+                // .catch(error=>console.log(error))
 
 
                 setStore([...store.datos], store.datos.push({
@@ -335,9 +335,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
             agregarProdInventario: (e) => {
+                e.preventDefault()
                 const store = getStore()
                 const { skuinventario, productoinventario, paletainventario, cantidadinventario, precioinventario, fechainventario } = getStore()
-                e.preventDefault()
+                console.log(skuinventario, productoinventario, paletainventario, cantidadinventario, precioinventario, fechainventario)
                 if (store.cantidadinventario === "" || store.precioinventario === "" || store.productoinventario === "" || store.skuinventario === "" || store.paletainventario === "" || store.fechainventario === "") {
                     swal("Faltan datos!", "Complete los campos para ingresar el producto a inventario!", "error");
                     return;
@@ -354,6 +355,24 @@ const getState = ({ getStore, getActions, setStore }) => {
                 //     cantidadinventario: store.cantidadinventario,
                 //     precioinventario: store.precioinventario,
                 // }))
+
+                fetch("https://3000-brown-muskox-m7y196jv.ws-us11.gitpod.io/inventario", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    mode: "no-cors",
+                    body: JSON.stringify({
+                        "skuinventario": skuinventario,
+                        "productoinventario": productoinventario,
+                        "paletainventario": paletainventario,
+                        "cantidadinventario": cantidadinventario,
+                        "precioinventario": precioinventario,
+                        "fechainventario": fechainventario
+                    })
+                })
+                    .then(respuesta => respuesta.json())
+                    .then(data => setStore({ inventario: data }))
+                    .catch(error => console.log(error))
+
                 setStore({
                     ...store, inventario: [...store.inventario,
                     {
@@ -393,10 +412,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                 datajs !== null ? setStore({ ...store, inventario: datajs }) : setStore({ ...store, inventario: [] })
                 // console.log(typeof datainvetario, typeof  dataparse)
-                fetch("https://3000-turquoise-deer-jclgrdxj.ws-us10.gitpod.io/inventario")
-                .then(respuesta=>respuesta.json()) 
-                .then(data=>setStore({inventario:data}))
-                .catch(error=>console.log(error))
+                fetch("https://3000-brown-muskox-m7y196jv.ws-us11.gitpod.io/inventario")
+                    .then(respuesta => respuesta.json())
+                    .then(data => setStore({ inventario: data }))
+                    .catch(error => console.log(error))
 
             },
 
@@ -410,11 +429,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                 //     return;
                 // }
 
-                if (store.skuinventarioedi === "" || store.productoinventarioedi === "" || store.cantidadinventarioedi === "" || store.precioinventarioedi === "" || store.paletainventarioedi === "" || store.fechainventarioedi === "" ) {
+                if (store.skuinventarioedi === "" || store.productoinventarioedi === "" || store.cantidadinventarioedi === "" || store.precioinventarioedi === "" || store.paletainventarioedi === "" || store.fechainventarioedi === "") {
                     swal("Faltan datos!", "Complete los campos para ingresar el producto a inventario!", "error");
                     return;
                 }
-                console.log(typeof paletainventarioedi,typeof store.inventario[posicion].paletainventario)
+                console.log(typeof paletainventarioedi, typeof store.inventario[posicion].paletainventario)
 
                 setStore(
                     ...store.inventario, store.inventario[posicion] = {
