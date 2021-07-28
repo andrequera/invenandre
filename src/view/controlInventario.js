@@ -337,7 +337,7 @@ useEffect(() => {
                                                         <td>{prod.precioinventario}</td>
                                                         <td>{prod.fechainventario}</td>
                                                         <td><img src={"../img/editar1" + ".jpg"} width="35" height="35" alt="...imagen..." data-toggle="modal" data-target="#exampleModal" onClick={() => setPosicion(i)}></img></td>
-                                                        <td><img src={"../img/borrar" + ".jpg"} width="35" height="35" alt="...imagen..." onClick={() => actions.borra(i)}></img></td>
+                                                        <td><img src={"../img/borrar" + ".jpg"} width="35" height="35" alt="...imagen..." onClick={() => actions.borra(i,prod.id)}></img></td>
 
                                                         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div className="modal-dialog" role="document">

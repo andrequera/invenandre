@@ -96,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 else {
                     const store = getStore();
 
-                    fetch("https://3000-turquoise-deer-jclgrdxj.ws-us10.gitpod.io/pedido")
+                    fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/pedido")
                         .then(respuesta => respuesta.json())
                         .then(data => console.table(data))
                         .catch(error => console.log(error))
@@ -274,13 +274,36 @@ const getState = ({ getStore, getActions, setStore }) => {
                 //
             },
             //console.log(datos)
-            borra: (i) => {
+            borra: (i,id) => {
                 const store = getStore()
+
+                fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/inventario/"+id, {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" },
+                })
+                    .then(respuesta => respuesta.json())
+                    .then(data => {
+                        console.log(data)
+                        setStore({ inventario: data })
+                    })
+                    .catch(error => console.log(error))
+
+
                 store.datos.splice(i, 1);
                 setStore([...store.datos]);
                 store.inventario.splice(i, 1);
                 setStore([...store.inventario]);
+            
+                
+
+
+
+
+            
                 localStorage.setItem("Inventario", JSON.stringify(store.inventario))
+            
+
+
             },
 
             //         editarMateria: (e) => {
@@ -338,7 +361,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 e.preventDefault()
                 const store = getStore()
                 const { skuinventario, productoinventario, paletainventario, cantidadinventario, precioinventario, fechainventario } = getStore()
-                console.log(skuinventario, productoinventario, paletainventario, cantidadinventario, precioinventario, fechainventario)
                 if (store.cantidadinventario === "" || store.precioinventario === "" || store.productoinventario === "" || store.skuinventario === "" || store.paletainventario === "" || store.fechainventario === "") {
                     swal("Faltan datos!", "Complete los campos para ingresar el producto a inventario!", "error");
                     return;
@@ -356,7 +378,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 //     precioinventario: store.precioinventario,
                 // }))
 
-                fetch("https://3000-brown-muskox-m7y196jv.ws-us11.gitpod.io/inventario", {
+                fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/inventario", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     mode: "no-cors",
@@ -370,7 +392,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                 })
                     .then(respuesta => respuesta.json())
-                    .then(data => setStore({ inventario: data }))
+                    .then(data => {
+                        console.log(data)
+                        setStore({ inventario: data })
+                    })
                     .catch(error => console.log(error))
 
                 setStore({
@@ -412,7 +437,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                 datajs !== null ? setStore({ ...store, inventario: datajs }) : setStore({ ...store, inventario: [] })
                 // console.log(typeof datainvetario, typeof  dataparse)
-                fetch("https://3000-brown-muskox-m7y196jv.ws-us11.gitpod.io/inventario")
+                fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/inventario")
                     .then(respuesta => respuesta.json())
                     .then(data => setStore({ inventario: data }))
                     .catch(error => console.log(error))
