@@ -436,16 +436,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const datajs = JSON.parse(datainvetario)
 
                 datajs !== null ? setStore({ ...store, inventario: datajs }) : setStore({ ...store, inventario: [] })
-                // console.log(typeof datainvetario, typeof  dataparse)
+                // console.log(typeof datainvetario, typeof  dataparse)   ACAAAAA MetodoGet
+                
                 fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/inventario")
                     .then(respuesta => respuesta.json())
                     .then(data => setStore({ inventario: data }))
                     .catch(error => console.log(error))
 
+
             },
 
 
-            editarProInventario: (posicion) => {
+            editarProInventario: (posicion,id) => {
                 const store = getStore()
                 const { skuinventarioedi, productoinventarioedi, paletainventarioedi, cantidadinventarioedi, precioinventarioedi, fechainventarioedi } = getStore()
 
@@ -459,6 +461,27 @@ const getState = ({ getStore, getActions, setStore }) => {
                     return;
                 }
                 console.log(typeof paletainventarioedi, typeof store.inventario[posicion].paletainventario)
+
+                
+                fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/inventario"+id,{
+                    method: "PUT",
+                    headers: { "Content-type": "application/json" },
+                    body: JSON.stringify({
+                        "skuinventario": skuinventarioedi,
+                        "productoinventario": productoinventarioedi,
+                        "paletainventario": paletainventarioedi,
+                        "cantidadinventario": cantidadinventarioedi,
+                        "precioinventario": precioinventarioedi,
+                        "fechainventario": fechainventarioedi
+                    })
+                })
+
+                    .then(respuesta => respuesta.json())
+                    .then(data => console.log(data)
+                        //setStore({ inventario: data })
+                        )
+                    .catch(error => console.log(error))
+
 
                 setStore(
                     ...store.inventario, store.inventario[posicion] = {

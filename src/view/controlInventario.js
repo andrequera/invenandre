@@ -397,7 +397,7 @@ useEffect(() => {
                                                                     </div>
                                                                     <div className="modal-footer">
                                                                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                        <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => actions.editarProInventario(posicion)}>Save changes</button>
+                                                                        <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => actions.editarProInventario(posicion, prod.id)}>Save changes</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
