@@ -96,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 else {
                     const store = getStore();
 
-                    fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/pedido")
+                    fetch("http://localhost:8080/api/clientes/")
                         .then(respuesta => respuesta.json())
                         .then(data => console.table(data))
                         .catch(error => console.log(error))
@@ -277,7 +277,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             borra: (i,id) => {
                 const store = getStore()
 
-                fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/inventario/"+id, {
+                fetch("https://3000-bronze-chicken-dd6gnpo5.ws-us11.gitpod.io/inventario/"+id, {
                     method: "DELETE",
                     headers: { "Content-Type": "application/json" },
                 })
@@ -378,7 +378,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 //     precioinventario: store.precioinventario,
                 // }))
 
-                fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/inventario", {
+                fetch("https://3000-bronze-chicken-dd6gnpo5.ws-us11.gitpod.io/inventario", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     mode: "no-cors",
@@ -438,7 +438,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 datajs !== null ? setStore({ ...store, inventario: datajs }) : setStore({ ...store, inventario: [] })
                 // console.log(typeof datainvetario, typeof  dataparse)   ACAAAAA MetodoGet
                 
-                fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/inventario")
+                fetch("https://3000-bronze-chicken-dd6gnpo5.ws-us11.gitpod.io/inventario")
                     .then(respuesta => respuesta.json())
                     .then(data => setStore({ inventario: data }))
                     .catch(error => console.log(error))
@@ -463,7 +463,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 console.log(typeof paletainventarioedi, typeof store.inventario[posicion].paletainventario)
 
                 
-                fetch("https://3000-coral-sailfish-uqwmulht.ws-us11.gitpod.io/inventario"+id,{
+                fetch("https://3000-bronze-chicken-dd6gnpo5.ws-us11.gitpod.io/inventario"+id,{
                     method: "PUT",
                     headers: { "Content-type": "application/json" },
                     body: JSON.stringify({
